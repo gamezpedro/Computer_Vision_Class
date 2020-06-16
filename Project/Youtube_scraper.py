@@ -22,6 +22,7 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer 
 from selenium import webdriver
+from langdetect import detect
 
 def remove_emoji(string):
     emoji_pattern = re.compile("["
@@ -35,12 +36,13 @@ def remove_emoji(string):
     return emoji_pattern.sub(r'', string)
 
 def isEnglish(sentence):
-    try:
-        sentence.encode(encoding='utf-8').decode('ascii')
-    except UnicodeDecodeError:
-        return False
-    else:
-        return True
+    return detect(sentence) == 'en'
+    # try:
+    #     sentence.encode(encoding='utf-8').decode('ascii')
+    # except UnicodeDecodeError:
+    #     return False
+    # else:
+    #     return True
 
 def clean_comments(raw_comments):
     cleansed_comments = []

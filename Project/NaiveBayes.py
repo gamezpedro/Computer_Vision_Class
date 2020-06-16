@@ -5,47 +5,24 @@ import random
 import pickle
 from nltk.corpus import movie_reviews, stopwords
 from nltk.tokenize import word_tokenize
-import string
-'''
-Combining Algorithms with NLTK to create our classifier
-Combining classifier algorithms is is a common technique, done by creating a sort
- of voting system, where each algorithm gets one vote, and the classification that 
- has the most votes is the chosen one.
-''' 
 
-'''
-Text classification
-A fairly popular text classification task is to identify a body of text as either
-spam or not spam, for things like email filters. In our case, we're going to try 
-to create a sentiment analysis algorithm.
-'''
-
-'''
-Naive Bayes will take every word in every review to find the most popular words used. 
-Then, out of those most popular words we'll see which one appeared on positive
-or negative connotations. Finally, we'll search for those words for whichever has
-more positive or negative and that's how will classify.
-'''
-
-'''
-CUSTOM DATASET GIVES BETTER PREDICTIONS RATHER THAN USING THE MOVIEW REVIEWS
-'''
 
 # Bag on NGrams feature
 # From: http://blog.chapagain.com.np/python-nltk-sentiment-analysis-on-movie-reviews-natural-language-processing-nlp/
 
-# Comment when not using this dataset
-# 5532 each
+# Comment when not using this dataset, 5532 comments each list
 short_pos = open("reviews/positive.txt", encoding='latin-1').read()
 short_neg = open("reviews/negative.txt", encoding='latin-1').read()
 
 pos_reviews = []
+# When using movie_reviews as dataset
 # for fileid in movie_reviews.fileids('pos'):
 #     pos_reviews.append(movie_reviews.words(fileid))
 for pos_review in short_pos.split('\n'):
     pos_reviews.append(word_tokenize(pos_review)) 
 
 neg_reviews = []
+# When using movie_reviews as dataset:
 # for fileid in movie_reviews.fileids('neg'):
 #     neg_reviews.append(movie_reviews.words(fileid))
 for neg_review in short_neg.split('\n'):
